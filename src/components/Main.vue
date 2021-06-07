@@ -5,10 +5,12 @@
 
   <div class="container">
 
-    <div class="row justify-content-center">
+    <div class="row ort">
 
       <!-- car item -->
 <h4 v-if="cars.length == 0">testdwqdwq</h4>
+
+
       <div class="col" v-for='(item,index) in cars' :key='index'>
 
         <div class="card car-card">
@@ -16,7 +18,7 @@
           <img class="card-img-top" :src="item.image" alt="Car-Image">
           <div class="card-body card-first">
             <h5 class="card-title">{{ item.brand }} {{ item.model }} {{ item.modelYear }}</h5>
-            <h5 class="card-text">{{ item.caseType }} {{ item.motor }} {{ item.customName }} {{ item.hp }}</h5>
+            <h5 class="card-text">{{ item.caseType }} {{ item.motor }} {{ item.customName }} {{ item.hp }}HP</h5>
           </div>
           <div class="card-body card-second">
             <div class="row">
@@ -55,8 +57,8 @@
         </div>
 
       </div>
-
       <!-- car item -->
+
 
 
     </div>
@@ -111,6 +113,20 @@ section.car-list {
   }
 }
 
+@media (min-width: 1300px){
+  section.car-list .container .col {
+    max-width: 312px!important;
+  }
+
+  section.car-list .car-card{
+    max-width: 312px!important;
+  }
+}
+
+.ort,.container{
+  position: relative;
+  margin: auto;
+}
 section.car-list .container {
   position: relative;
   margin: auto;
@@ -118,9 +134,9 @@ section.car-list .container {
 
 section.car-list .container .col {
   min-width: 312px!important;
-  margin-left: min(7.5px,5%);
-  margin-right: min(7.5px,5%);
-  padding: 0;
+  margin-left: min(7.5px,100%);
+  margin-right: min(7.5px,100%);
+  padding: 0 0 0 7.5px;
   padding-top: 15px;
 }
 
@@ -143,10 +159,8 @@ section.car-list .car-card{
   border: solid 2px #ebebeb;
   background-color: #fff;
   min-width: 312px!important;
-  max-width: 312px!important;
 }
 section.car-list .car-card .card-img-top{
-
 }
 
 section.car-list .car-card .card-first{
