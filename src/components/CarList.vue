@@ -1,9 +1,48 @@
 <template>
 
+  <section id="sidebar" class="sidebar">
+
+
+
+
+
+  </section>
+
   <section id="car-list" class="car-list">
-
-
   <div class="container">
+
+    <div class="filter-top">
+      <div class="row justify-content-between">
+
+        <div class="col col-md-auto">
+          <div class="first">
+          Bulunan Araç Fiyat ve Modelleri (
+            <span class="first-2">{{ cars.length }}</span> Sonuç Bulundu.)
+          </div>
+        </div>
+
+        <div class="col">
+            <div class="second">
+          <select v-model="selected">
+            <option disabled value="">Gelişmiş Sıralama</option>
+            <option>Fiyata göre (Önce en yüksek)</option>
+            <option>Fiyata göre (Önce en düşük)</option>
+            <option>Tarihe göre (Önce en yeni ilan)</option>
+            <option>Tarihe göre (Önce en eski ilan)</option>
+            <option>KM'ye göre (Önce en yüksek)</option>
+            <option>KM'ye göre (Önce en düşük)</option>
+            <option>Yıla göre (Önce en yeni)</option>
+            <option>Yıla göre (Önce en eski)</option>
+          </select>
+
+        </div>
+        </div>
+
+      </div>
+    </div>
+
+
+
 
     <div class="row ort">
 
@@ -64,16 +103,18 @@
     </div>
   </div>
   </section>
+
 </template>
 
 <script>
-import {get} from "@/main/api.service";
+import {getAll} from "@/main/car.service";
 
 export default {
-  name: 'Main',
+  name: 'CarList',
   data(){
     return {
-      cars: []
+      cars: [],
+      selected: ''
     }
   },
   created() {
@@ -81,7 +122,7 @@ export default {
   },
   methods: {
     getCars() {
-      get('cars').then(response => {
+      getAll().then(response => {
         this.cars = response.data;
       })
     },
@@ -90,14 +131,62 @@ export default {
 
 </script>
 
+
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 body, input, button {
   font: 14px "Roboto",sans-serif;
 }
+.filter-top{
+  background-color: #fafafa;
+  padding-left: 20px!important;
+  border-radius: 5px;
+  border: solid 1px #ebebeb;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.filter-top .first {
+  font-size: 13px;
+  text-align: left;
+  color: #3c3c3c;
+  align-self: center;
+  align-items: center;
+}
+
+
+.filter-top .first-2 {
+  color: #bc3030;
+}
+
+.filter-top .second {
+  height: 35px;
+  background-color: #fafafa;
+  border-radius: 0px;
+  border: none;
+  width: 250px;
+  font-weight: 500;
+  float: right;
+  margin-right: 15px;
+}
+
+#sidebar {
+  width: 15%;
+  padding: 15px;
+  float: left
+}
+
+#car-list {
+  width: 80%;
+  float: right;
+  margin: auto;
+  position: relative;
+}
+
 section.car-list {
   padding: 0!important;
   margin: 0 auto!important;
+  margin-right: 30px!important;
 }
 
 @media (min-width: 1200px){
@@ -113,13 +202,15 @@ section.car-list {
   }
 }
 
+
+
 @media (min-width: 1300px){
   section.car-list .container .col {
-    max-width: 312px!important;
+    max-width: 400px!important;
   }
 
   section.car-list .car-card{
-    max-width: 312px!important;
+    max-width: 400px!important;
   }
 }
 
@@ -128,8 +219,7 @@ section.car-list {
   margin: auto;
 }
 section.car-list .container {
-  position: relative;
-  margin: auto;
+
 }
 
 section.car-list .container .col {
