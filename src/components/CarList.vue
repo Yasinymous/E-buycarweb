@@ -53,8 +53,8 @@
       <div class="col" v-for='(item,index) in cars' :key='index'>
 
         <div class="card car-card">
-          <a href="" class="car-favorite-button"><img class="favorite-button-icon" src="https://garaj11.akamaized.net/garaj11prod/assets/images/not-favorite.svg#svgView(viewBox(1,10,75,50))" alt="Favori"></a>
-          <img class="card-img-top" :src="item.image" alt="Car-Image">
+          <a v-bind:href="'/detail/' + item.id" class="car-favorite-button"><img class="favorite-button-icon" src="https://garaj11.akamaized.net/garaj11prod/assets/images/not-favorite.svg#svgView(viewBox(1,10,75,50))" alt="Favori"></a>
+          <img class="card-img-top" :src="getImageUrl(item.image)" alt="Car-Image">
           <div class="card-body card-first">
             <h5 class="card-title">{{ item.brand }} {{ item.model }} {{ item.modelYear }}</h5>
             <h5 class="card-text">{{ item.caseType }} {{ item.motor }} {{ item.customName }} {{ item.hp }}HP</h5>
@@ -108,6 +108,7 @@
 
 <script>
 import {getAll} from "@/main/car.service";
+import {BASE_URL} from "@/main/config";
 
 export default {
   name: 'CarList',
@@ -126,6 +127,9 @@ export default {
         this.cars = response.data;
       })
     },
+    getImageUrl(id) {
+      return BASE_URL + 'filestore/'+ id;
+    }
   }
 }
 

@@ -1,7 +1,6 @@
 <template>
   <section id="car-list" class="car-list">
 
-
     <div class="container">
 
       <div class="row ort">
