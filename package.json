@@ -34,7 +34,8 @@
     "portal-vue": "^2.1.6",
     "sass": "^1.19.0",
     "sass-loader": "^8.0.0",
-    "vue-cli-plugin-bootstrap": "~0.4.0"
+    "vue-cli-plugin-bootstrap": "~0.4.0",
+    "vue-cli-plugin-mdb": "~2.1.0"
   },
   "eslintConfig": {
     "root": true,
