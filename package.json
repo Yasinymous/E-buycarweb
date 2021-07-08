@@ -9,13 +9,17 @@
   },
   "dependencies": {
     "@innologica/vue-dropdown-menu": "^0.1.4",
+    "@syncfusion/ej2-vue-dropdowns": "^19.2.44",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "bootstrap-vue": "^2.1.0",
     "core-js": "^3.6.5",
+    "element-plus": "*",
     "serve": "^11.3.2",
     "vue": "^3.0.0",
     "vue-axios": "^3.2.4",
+    "vue-innersearch": "^0.0.12",
+    "vue-instant": "^1.0.4",
     "vue-router": "^4.0.0-0"
   },
   "devDependencies": {

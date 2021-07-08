@@ -5,6 +5,19 @@ import VueAxios from "vue-axios";
 import axios from 'axios'
 import {BASE_URL} from "@/main/config";
 import router from './router'
+import { AutoCompletePlugin } from '@syncfusion/ej2-vue-dropdowns';
+
+import ElementPlus from 'element-plus';
+import 'element-plus/lib/theme-chalk/index.css';
+
 
 axios.defaults.baseURL = BASE_URL;
-createApp(App).use(router).use(VueAxios, axios).mount('#app')
+
+const app = createApp(App)
+app.use(ElementPlus)
+app.use(AutoCompletePlugin)
+app.use(VueAxios, axios)
+app.use(router)
+app.mount('#app')
+
+

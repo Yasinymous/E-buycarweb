@@ -1,10 +1,18 @@
 <template>
 
 <section class="header">
-  <searchbox />
+
+  <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+
+
+    <searchbox />
+
+
+  </el-menu>
 </section>
 
  <section class="body">
+
    <div>
 
     <Filter />

@@ -47,17 +47,17 @@
     <div class="row ort">
 
       <!-- car item -->
-<h4 v-if="cars.length == 0">testdwqdwq</h4>
+<h4 v-if="cars.length == 0">Arac Bulunamadi</h4>
 
 
       <div class="col" v-for='(item,index) in cars' :key='index'>
-
+        <a style="text-decoration: none" v-bind:href="'/detail/' + item.id" >
         <div class="card car-card">
-          <a v-bind:href="'/detail/' + item.id" class="car-favorite-button"><img class="favorite-button-icon" src="https://garaj11.akamaized.net/garaj11prod/assets/images/not-favorite.svg#svgView(viewBox(1,10,75,50))" alt="Favori"></a>
+          <a class="car-favorite-button"><img class="favorite-button-icon" src="https://garaj11.akamaized.net/garaj11prod/assets/images/not-favorite.svg#svgView(viewBox(1,10,75,50))" alt="Favori"></a>
           <img class="card-img-top" :src="getImageUrl(item.image)" alt="Car-Image">
           <div class="card-body card-first">
             <h5 class="card-title">{{ item.brand }} {{ item.model }} {{ item.modelYear }}</h5>
-            <h5 class="card-text">{{ item.caseType }} {{ item.motor }} {{ item.customName }} {{ item.hp }}HP</h5>
+            <h5 class="card-text">{{ item.caseType }} {{ item.motor }} {{ item.customName }} {{ item.hp }}HP {{ item.code }}</h5>
           </div>
           <div class="card-body card-second">
             <div class="row">
@@ -94,7 +94,7 @@
             </div>
           </div>
         </div>
-
+        </a>
       </div>
       <!-- car item -->
 
