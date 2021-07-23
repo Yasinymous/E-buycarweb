@@ -2,6 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Car from "@/views/Car";
 import CarDetail from "@/views/CarDetail";
+import CarType from "@/views/CarType";
+import CarModel from "@/views/CarModel";
+import CarBrand from "@/views/CarBrand";
 
 const routes = [
   {
@@ -15,7 +18,28 @@ const routes = [
     component: Car
   },
   {
-    path: '/detail/:id',
+    path: '/car/:type',
+    name: 'CarType',
+    component: CarType,
+  },
+  {
+    path: '/car/:type/:brand',
+    name: 'CarBrand',
+    component: CarBrand,
+  },
+  {
+    path: '/car/:type/:brand/:model',
+    name: 'CarModel',
+    component: CarModel,
+  },
+  {
+    path: '/car',
+    name: 'Car',
+    component: Car,
+    props: route => ({ query: route.query.b })
+  },
+  {
+    path: '/ilan/:id',
     name: 'CarDetail',
     component: CarDetail
   },

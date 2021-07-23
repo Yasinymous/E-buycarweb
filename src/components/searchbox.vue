@@ -1,7 +1,5 @@
 <template>
-
    <el-row class="row-bg" :gutter="20">
-
     <el-col :span="4">
       <el-image
           style="height: 41px;"
@@ -10,7 +8,6 @@
       </el-image>
 
     </el-col>
-
    <el-col :span="20">
      <div class="search-box">
      <el-autocomplete
@@ -20,11 +17,7 @@
          placeholder="Ara"
          @select="handleSelect"
          maxlength="30"
-         style="min-width:100%;"
-     >
-       <template #prefix>
-         <i class="el-icon-search" @click="handleIconClick"></i>
-       </template>
+         style="min-width:100%;">
        <template #default="{ item }">
 
          <a v-bind:href="'/detail/' + item.id">
@@ -49,44 +42,47 @@
          </a>
 
        </template>
-
+       <template #append>
+         <router-link :to="{ path: '/car', query: { b: state }}">
+         <el-button style="text-decoration: none"  icon="el-icon-search"></el-button>
+         </router-link>
+       </template>
      </el-autocomplete>
      </div>
    </el-col>
 
    </el-row>
-
 </template>
 
 <script>
-import {getAll} from "@/main/car.service";
 import { ref } from 'vue'
 import {BASE_URL} from "@/main/config";
 
 export default  {
   name: "searchbox",
+  props: {
+    cars: Object
+  },
   data() {
     return {
-      cars: [],
+      searchcars: this.cars,
       state: ref(''),
     }
   },
-  mounted() {
+  created() {
     this.getCars();
   },
   methods: {
     getCars() {
-      getAll().then(response => {
-        this.cars.value = response.data;
-      })
+      this.searchcars.value = this.cars;
     },
     getImageUrl(id) {
       return BASE_URL + 'filestore/'+ id;
     },
     querySearch(queryString, cb){
       var results = queryString
-          ? this.cars.value.filter(this.createFilter(queryString))
-          : this.cars.value;
+          ? this.searchcars.value.filter(this.createFilter(queryString))
+          : this.searchcars.value;
       // call callback function to return suggestion objects
       cb(results);
     },
@@ -97,17 +93,6 @@ export default  {
             0
         );
       };
-    },
-    loadAll() {
-      return [
-        { "value": "vue", "link": "https://github.com/vuejs/vue" },
-        { "value": "element", "link": "https://github.com/ElemeFE/element" },
-        { "value": "cooking", "link": "https://github.com/ElemeFE/cooking" },
-        { "value": "mint-ui", "link": "https://github.com/ElemeFE/mint-ui" },
-        { "value": "vuex", "link": "https://github.com/vuejs/vuex" },
-        { "value": "vue-router", "link": "https://github.com/vuejs/vue-router" },
-        { "value": "babel", "link": "https://github.com/babel/babel" }
-      ];
     },
     handleSelect(item){
       console.log(item);

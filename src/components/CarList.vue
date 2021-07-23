@@ -1,13 +1,4 @@
 <template>
-
-  <section id="sidebar" class="sidebar">
-
-
-
-
-
-  </section>
-
   <section id="car-list" class="car-list">
   <div class="container">
 
@@ -45,13 +36,11 @@
 
 
     <div class="row ort">
-
-      <!-- car item -->
 <h4 v-if="cars.length == 0">Arac Bulunamadi</h4>
 
 
       <div class="col" v-for='(item,index) in cars' :key='index'>
-        <a style="text-decoration: none" v-bind:href="'/detail/' + item.id" >
+        <a style="text-decoration: none" v-bind:href="'/ilan/' + item.id" >
         <div class="card car-card">
           <a class="car-favorite-button"><img class="favorite-button-icon" src="https://garaj11.akamaized.net/garaj11prod/assets/images/not-favorite.svg#svgView(viewBox(1,10,75,50))" alt="Favori"></a>
           <img class="card-img-top" :src="getImageUrl(item.image)" alt="Car-Image">
@@ -96,37 +85,26 @@
         </div>
         </a>
       </div>
-      <!-- car item -->
+
 
 
 
     </div>
   </div>
   </section>
-
 </template>
 
+
 <script>
-import {getAll} from "@/main/car.service";
 import {BASE_URL} from "@/main/config";
 
 export default {
   name: 'CarList',
-  data(){
-    return {
-      cars: [],
-      selected: ''
-    }
-  },
-  created() {
-    this.getCars();
+  props: {
+    searchQuery: String,
+    cars: Object
   },
   methods: {
-    getCars() {
-      getAll().then(response => {
-        this.cars = response.data;
-      })
-    },
     getImageUrl(id) {
       return BASE_URL + 'filestore/'+ id;
     }
@@ -143,7 +121,7 @@ body, input, button {
 }
 .filter-top{
   background-color: #fafafa;
-  padding-left: 20px!important;
+  margin-left: 20px!important;
   border-radius: 5px;
   border: solid 1px #ebebeb;
   border-bottom-left-radius: 0;
@@ -181,7 +159,7 @@ body, input, button {
 }
 
 #car-list {
-  width: 80%;
+  width: 90%;
   float: right;
   margin: auto;
   position: relative;
