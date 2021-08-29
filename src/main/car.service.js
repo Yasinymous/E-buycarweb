@@ -1,4 +1,9 @@
-import {get} from "@/main/api.service";
+import {get, post} from "@/main/api.service";
+
+
+export function postCars(params){
+    return post('/cars/create', params);
+}
 
 export function getCarsDetailById(id) {
     return get('cars/' + id);
@@ -31,8 +36,6 @@ export function groupByModelKey(array, key){
     }, {})
     return carGroup;
 }
-
-
 
 export function getCarsType(cars){
     let oto = cars.filter(car => car.type.includes('Otomobil')).length;

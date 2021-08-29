@@ -2,6 +2,7 @@
   <div id="nav">
     <router-link to="/">Home</router-link> |
     <router-link to="/car">CarList</router-link> |
+    <router-link to="/car/create">PostCar</router-link> |
     <router-link to="/about">About</router-link>
   </div>
 

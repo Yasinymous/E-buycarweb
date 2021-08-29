@@ -6,7 +6,6 @@
           src="https://garaj11.akamaized.net/garaj11prod/assets/logo.svg"
           :fit="fit">
       </el-image>
-
     </el-col>
    <el-col :span="20">
      <div class="search-box">
@@ -43,9 +42,7 @@
 
        </template>
        <template #append>
-         <router-link :to="{ path: '/car', query: { b: state }}">
-         <el-button style="text-decoration: none"  icon="el-icon-search"></el-button>
-         </router-link>
+         <el-button v-on:click="searchBoxRouter" style="text-decoration: none"  icon="el-icon-search"></el-button>
        </template>
      </el-autocomplete>
      </div>
@@ -69,6 +66,9 @@ export default  {
       state: ref(''),
     }
   },
+  watch: {
+
+  },
   created() {
     this.getCars();
   },
@@ -89,17 +89,18 @@ export default  {
     createFilter(queryString){
       return (car) => {
         return (
-            car.brand.toLowerCase().indexOf(queryString.toLowerCase()) ===
-            0
+            car.brand.toLowerCase().indexOf(queryString.toLowerCase()) != -1
         );
       };
     },
     handleSelect(item){
       console.log(item);
     },
-    handleIconClick(ev){
-      console.log(ev);
-    },
+    searchBoxRouter(){
+      if (this.state.length > 0){
+        this.$router.push({ name: 'CarList', query: { text: this.state } })
+      }
+    }
   },
 }
 </script>

@@ -2,37 +2,6 @@
   <section id="car-list" class="car-list">
   <div class="container">
 
-    <div class="filter-top">
-      <div class="row justify-content-between">
-
-        <div class="col col-md-auto">
-          <div class="first">
-          Bulunan Araç Fiyat ve Modelleri (
-            <span class="first-2">{{ cars.length }}</span> Sonuç Bulundu.)
-          </div>
-        </div>
-
-        <div class="col">
-            <div class="second">
-          <select v-model="selected">
-            <option disabled value="">Gelişmiş Sıralama</option>
-            <option>Fiyata göre (Önce en yüksek)</option>
-            <option>Fiyata göre (Önce en düşük)</option>
-            <option>Tarihe göre (Önce en yeni ilan)</option>
-            <option>Tarihe göre (Önce en eski ilan)</option>
-            <option>KM'ye göre (Önce en yüksek)</option>
-            <option>KM'ye göre (Önce en düşük)</option>
-            <option>Yıla göre (Önce en yeni)</option>
-            <option>Yıla göre (Önce en eski)</option>
-          </select>
-
-        </div>
-        </div>
-
-      </div>
-    </div>
-
-
 
 
     <div class="row ort">
@@ -118,38 +87,6 @@ export default {
 <style>
 body, input, button {
   font: 14px "Roboto",sans-serif;
-}
-.filter-top{
-  background-color: #fafafa;
-  margin-left: 20px!important;
-  border-radius: 5px;
-  border: solid 1px #ebebeb;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-.filter-top .first {
-  font-size: 13px;
-  text-align: left;
-  color: #3c3c3c;
-  align-self: center;
-  align-items: center;
-}
-
-
-.filter-top .first-2 {
-  color: #bc3030;
-}
-
-.filter-top .second {
-  height: 35px;
-  background-color: #fafafa;
-  border-radius: 0px;
-  border: none;
-  width: 250px;
-  font-weight: 500;
-  float: right;
-  margin-right: 15px;
 }
 
 #sidebar {

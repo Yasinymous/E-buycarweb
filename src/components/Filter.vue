@@ -1,7 +1,9 @@
 <template>
 <div class="filter-content">
-  <el-card shadow="always">
-  <el-collapse v-model="activeName">
+  <el-card  shadow="always">
+
+  <el-collapse v-model="activeNames">
+
     <el-collapse-item name="1">
       <template #title>
        <h1>Arac Tipi</h1>
@@ -13,14 +15,14 @@
        </div>
        <div class="car-type-filter" >
 
-         <div v-if="type == 'main'">
+         <div v-if="$route.name == 'CarList'">
            <div v-for='(item,index) in carscount' :key='index'>
              <a style="text-decoration: none" v-bind:href="'/car/'+ item.name" ><h4>{{item.name}} ({{item.count}})</h4></a>
            </div>
 
          </div>
 
-         <div v-if="type == 'type'">
+         <div v-else-if="$route.name == 'CarType'">
            <div class="first-div">
              <a style="text-decoration: none" v-bind:href="typePath[0]" ><h4>{{$route.params.type}}</h4></a>
            </div>
@@ -30,7 +32,7 @@
 
          </div>
 
-         <div v-else-if="type == 'brand'">
+         <div v-else-if="$route.name == 'CarBrand'">
            <div class="first-div">
              <a style="text-decoration: none" v-bind:href="typePath[0]" ><h4>{{$route.params.type}}</h4></a>
            </div>
@@ -43,7 +45,7 @@
 
          </div>
 
-         <div v-else-if="type == 'model'">
+         <div v-else-if="$route.name == 'CarModel'">
            <div class="first-div">
              <a style="text-decoration: none" v-bind:href="typePath[0]" ><h4>{{$route.params.type}}</h4></a>
            </div>
@@ -65,63 +67,246 @@
 
     <el-collapse-item name="2">
       <template #title>
-        Yil<i class="header-icon el-icon-info"></i>
+        <h1>Yil</h1>
       </template>
-      <div>Operation feedback: enable the users to clearly perceive their operations by style updates and interactive effects;</div>
-      <div>Visual feedback: reflect current state by updating or rearranging elements of the page.</div>
+
+      <div class="filter-input">
+
+        <div class="first-input">
+
+        <el-input
+            type="text"
+            placeholder="Yil Girin (Min)"
+            v-model="yearMin"
+            maxlength="4"
+        >
+        </el-input>
+
+        </div>
+
+        <div class="second-input">
+
+        <el-input
+            type="text"
+            placeholder="Yil Girin (Max)"
+            v-model="yearMax"
+            maxlength="4"
+        >
+        </el-input>
+
+        </div>
+
+      </div>
+
     </el-collapse-item>
+
     <el-collapse-item name="3">
+
       <template #title>
-        Fiyat<i class="header-icon el-icon-info"></i>
+        <h1>Fiyat</h1>
       </template>
-      <div>Simplify the process: keep operating process simple and intuitive;</div>
-      <div>Definite and clear: enunciate your intentions clearly so that the users can quickly understand and make decisions;</div>
-      <div>Easy to identify: the interface should be straightforward, which helps the users to identify and frees them from memorizing and recalling.</div>
+
+      <div class="filter-input">
+
+        <div class="first-input">
+
+          <el-input
+              type="text"
+              placeholder="Fiyat Girin (Min)"
+              v-model="priceMin"
+              maxlength="4"
+          >
+          </el-input>
+
+        </div>
+
+        <div class="second-input">
+
+          <el-input
+              type="text"
+              placeholder="Fiyat Girin (Max)"
+              v-model="priceMax"
+              maxlength="4"
+          >
+          </el-input>
+
+        </div>
+
+      </div>
+
     </el-collapse-item>
+
     <el-collapse-item name="4">
+
       <template #title>
-        Kilometre<i class="header-icon el-icon-info"></i>
+        <h1>Kilometre</h1>
       </template>
-      <div>Decision making: giving advices about operations is acceptable, but do not make decisions for the users;</div>
-      <div>Controlled consequences: users should be granted the freedom to operate, including canceling, aborting or terminating current operation.</div>
+
+      <div class="filter-input">
+
+        <div class="first-input">
+
+          <el-input
+              type="text"
+              placeholder="Km Girin (Min)"
+              v-model="kmMin"
+              maxlength="4"
+          >
+          </el-input>
+
+        </div>
+
+        <div class="second-input">
+
+          <el-input
+              type="text"
+              placeholder="Km Girin (Max)"
+              v-model="kmMax"
+              maxlength="4"
+          >
+          </el-input>
+
+        </div>
+
+      </div>
+
     </el-collapse-item>
+
     <el-collapse-item name="5">
       <template #title>
-        Yakit Tipi<i class="header-icon el-icon-info"></i>
+        <h1>Yakit Tipi</h1>
       </template>
-      <div>Decision making: giving advices about operations is acceptable, but do not make decisions for the users;</div>
-      <div>Controlled consequences: users should be granted the freedom to operate, including canceling, aborting or terminating current operation.</div>
+
+      <div class="checkbox-input">
+
+        <el-checkbox-group v-model="fuelcheckList">
+          <el-row>
+            <el-checkbox label="Benzin"></el-checkbox>
+          </el-row>
+          <el-row>
+            <el-checkbox label="Dizel"></el-checkbox>
+          </el-row>
+          <el-row>
+            <el-checkbox label="Elektrik"></el-checkbox>
+          </el-row>
+          <el-row>
+            <el-checkbox label="Hibrit"></el-checkbox>
+          </el-row>
+
+        </el-checkbox-group>
+
+      </div>
+
     </el-collapse-item>
+
     <el-collapse-item name="6">
       <template #title>
-        Vites Tipi<i class="header-icon el-icon-info"></i>
+        <h1>Vites Tipi</h1>
       </template>
-      <div>Decision making: giving advices about operations is acceptable, but do not make decisions for the users;</div>
-      <div>Controlled consequences: users should be granted the freedom to operate, including canceling, aborting or terminating current operation.</div>
+
+      <div class="checkbox-input">
+
+        <el-checkbox-group v-model="gearcheckList">
+          <el-row>
+            <el-checkbox label="Manual"></el-checkbox>
+          </el-row>
+          <el-row>
+            <el-checkbox label="Otomatik"></el-checkbox>
+          </el-row>
+
+        </el-checkbox-group>
+
+      </div>
+
     </el-collapse-item>
+
     <el-collapse-item name="7">
     <template #title>
-      Kasa Tipi<i class="header-icon el-icon-info"></i>
+      <h1>Kasa Tipi</h1>
     </template>
-    <div>Decision making: giving advices about operations is acceptable, but do not make decisions for the users;</div>
-    <div>Controlled consequences: users should be granted the freedom to operate, including canceling, aborting or terminating current operation.</div>
+
+      <div class="checkbox-input">
+
+        <el-checkbox-group v-model="casecheckList">
+          <el-row>
+            <el-checkbox label="Cabrio"></el-checkbox>
+          </el-row>
+          <el-row>
+            <el-checkbox label="Camlıvan"></el-checkbox>
+          </el-row>
+          <el-row>
+            <el-checkbox label="Coupe"></el-checkbox>
+          </el-row>
+          <el-row>
+            <el-checkbox label="Hatchback"></el-checkbox>
+          </el-row>
+          <el-row>
+            <el-checkbox label="Kamyonet"></el-checkbox>
+          </el-row>
+          <el-row>
+            <el-checkbox label="Kombi"></el-checkbox>
+          </el-row>
+          <el-row>
+            <el-checkbox label="Minibüs"></el-checkbox>
+          </el-row>
+          <el-row>
+            <el-checkbox label="MPV"></el-checkbox>
+          </el-row>
+          <el-row>
+            <el-checkbox label="Panelvan"></el-checkbox>
+          </el-row>
+          <el-row>
+            <el-checkbox label="Pick-Up"></el-checkbox>
+          </el-row>
+          <el-row>
+            <el-checkbox label="Roadster"></el-checkbox>
+          </el-row>
+          <el-row>
+            <el-checkbox label="Sedan"></el-checkbox>
+          </el-row>
+          <el-row>
+            <el-checkbox label="Station Wagon"></el-checkbox>
+          </el-row>
+          <el-row>
+            <el-checkbox label="SUV"></el-checkbox>
+          </el-row>
+
+        </el-checkbox-group>
+
+      </div>
+
   </el-collapse-item>
   </el-collapse>
 
+    <el-affix position="bottom" :offset="20">
+      <button class="btn btn-primary btn-sm car-card-detail-btn ara-btn">Ara</button>
+    </el-affix>
+
   </el-card>
+
 </div>
 </template>
 
 <script>
+import { ref } from 'vue'
+
 export default {
   name: "Filter",
   props: {
     carscount: Array,
-    type: String,
   },
   data(){
     return{
       activeNames: ['1'],
+      yearMin: ref(''),
+      yearMax: ref(''),
+      priceMin: ref(''),
+      priceMax: ref(''),
+      kmMin: ref(''),
+      kmMax: ref(''),
+      fuelcheckList: [],
+      gearcheckList: [],
+      casecheckList: [],
       typePath: ['/car/'+ this.$route.params.type +'/','/car/' + this.$route.params.type  +'/'+ this.$route.params.brand+'/'],
     }
   },
@@ -129,6 +314,12 @@ export default {
 </script>
 
 <style scoped>
+
+.ara-btn{
+  min-width: 100%;
+  font-size: 19px;
+  height: 60px;
+}
 
 .filter-content{
   margin-left: 45px;
@@ -166,5 +357,22 @@ export default {
   text-align: left;
   color: #000;
 }
+
+
+.filter-content .filter-input .first-input{
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.filter-content .filter-input .first-input input:focus{
+  border-color: #fff;
+}
+.filter-content .filter-input .second-input{
+
+}
+
+.button{
+  color: #bc3030;
+}
+
 
 </style>

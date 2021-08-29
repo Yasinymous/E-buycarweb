@@ -5,7 +5,7 @@
   </div>
 
   <div class="pathBar">
-    <pathBar :path="[]" :path2='[]' :path3='[]' :carData="carDetail" />
+    <pathBar :path="carDetail" />
   </div>
 
 
@@ -40,14 +40,13 @@ export default {
   },
   data() {
     return {
-      carDetail: {},
+      carDetail: [],
       allCars: [],
     }
   },
   mounted() {
     getCarsDetailById(this.$route.params.id).then(response => {
       this.carDetail = response.data;
-
     });
   }
 }

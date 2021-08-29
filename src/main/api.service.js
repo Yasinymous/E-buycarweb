@@ -8,7 +8,10 @@ export function get(path='') {
 }
 
 export function post(path='',params) {
-    return axios.post(path,params).catch(err => {
+    return axios.post(path,params, {headers: {
+        'Content-Type': 'application/json',
+            "Accept": "application/json"
+    }}).catch(err => {
         throw new Error('Http Post Error : api.service',err);
     })
 }
